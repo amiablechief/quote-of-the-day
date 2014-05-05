@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">QotD</string>
+    <string name="action_settings">Settings</string>
+    <string name="fetch_qotd">Fetch Random Quote</string>
+    <string name="empty_qotd_view">Click the button to display a quotable quote</string>
+    <string name="action_about">About QotD</string>
+    <string name="menu_item_share_text">Share</string>
+</resources>
