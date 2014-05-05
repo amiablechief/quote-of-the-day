@@ -4,10 +4,10 @@
     tools:context="com.seriousplay.qotd.MainActivity">
 
     <item android:id="@+id/menu_item_share"
-        android:showAsAction="ifRoom"
         android:orderInCategory="99"
+        android:showAsAction="ifRoom"
         android:title="@string/menu_item_share_text"
-        android:actionProviderClass="android.support.v7.widget.ShareActionProvider"/>
+        support:actionProviderClass="android.support.v7.widget.ShareActionProvider"/>
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

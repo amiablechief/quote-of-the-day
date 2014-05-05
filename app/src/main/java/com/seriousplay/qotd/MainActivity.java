@@ -1,17 +1,11 @@
 package com.seriousplay.qotd;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Random;
-
-import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.support.v4.view.ActionProvider;
+import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
@@ -22,11 +16,17 @@ import android.widget.Toast;
 
 import com.google.analytics.tracking.android.EasyTracker;
 
-public class MainActivity extends Activity {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Random;
+
+public class MainActivity extends ActionBarActivity {
 
 	private TextView mTextView;
 	private static String TEXT_VALUE = "";
-	private ActionProvider mShareActionProvider;
+	private ShareActionProvider mShareActionProvider;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -185,8 +185,8 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		MenuItem shareItem = menu.findItem(R.id.menu_item_share);
-		mShareActionProvider = MenuItemCompat.getActionProvider(shareItem);
-				
+		mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareItem);
+
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -206,8 +206,10 @@ public class MainActivity extends Activity {
 				startActivity(Intent.createChooser(shareIntent, "Share the quote via..."));
 			}
 		} else if (id == R.id.action_about) {
-			Toast.makeText(getApplicationContext(), "Please visit github.com/kulinp/QotD", Toast.LENGTH_LONG).show();
-			return true;
+			//Toast.makeText(getApplicationContext(), "Please visit github.com/kulinp/QotD", Toast.LENGTH_LONG).show();
+            Intent aboutIntent = new Intent(this, AboutActivity.class);
+            startActivity(aboutIntent);
+			//return true;
 		} else if (id == R.id.action_settings) {
 			Toast.makeText(getApplicationContext(), "Settings not yet implemented", Toast.LENGTH_LONG).show();
 			return true;

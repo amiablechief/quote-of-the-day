@@ -7,4 +7,8 @@
     <string name="empty_qotd_view">Click the button to display a quotable quote</string>
     <string name="action_about">About QotD</string>
     <string name="menu_item_share_text">Share</string>
+    <string name="title_activity_about">About QotD</string>
+    <string name="about_qotd">QotD version</string>
+    <string name="about_qotd_description">QotD is a fun little side project to learn Android programming. Source code is hosted on Github at https://github.com/kulinp/QotD.</string>
+
 </resources>
