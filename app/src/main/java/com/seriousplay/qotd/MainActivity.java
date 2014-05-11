@@ -25,25 +25,42 @@ import java.util.Random;
 public class MainActivity extends ActionBarActivity {
 
 	private TextView mTextView;
+    private String STATE_QOTD;
 	private static String TEXT_VALUE = "";
 	private ShareActionProvider mShareActionProvider;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
 		mTextView = (TextView) findViewById(R.id.qotdview);
-		if(savedInstanceState != null) {
-			String savedText = savedInstanceState.getString(TEXT_VALUE);
+		/*if(savedInstanceState != null) {
+			String savedText = savedInstanceState.getString(STATE_QOTD);
 			mTextView.setText(savedText);
-		}
+		}*/
 
 		//Adds scrolling to the TextView
 		mTextView.setMovementMethod(ScrollingMovementMethod.getInstance());
 	}
 
-	@Override
+    //Code to save state on orientation change
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        mTextView = (TextView) findViewById(R.id.qotdview);
+        outState.putString(STATE_QOTD, mTextView.getText().toString());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        mTextView = (TextView) findViewById(R.id.qotdview);
+        mTextView.setText(STATE_QOTD);
+    }
+
+    @Override
 	protected void onStart() {
 		super.onStart();
 		EasyTracker.getInstance(this).activityStart(this);
@@ -54,14 +71,7 @@ public class MainActivity extends ActionBarActivity {
 		super.onStop();
 		EasyTracker.getInstance(this).activityStop(this);
 	}
-	
-	//Code to save state on orientation change
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		outState.putString(TEXT_VALUE, mTextView.getText().toString());
-	}
-	
+
 	private AssetManager getApplicationAssets() {
 		// open random quotes file
 		AssetManager assetmanager = getAssets();

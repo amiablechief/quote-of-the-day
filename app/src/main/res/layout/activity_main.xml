@@ -29,7 +29,8 @@
             android:enabled="false"
             android:hint="@string/empty_qotd_view"
             android:textColor="#00f"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:freezesText="true"/>
     </ScrollView>
 
     <Button
